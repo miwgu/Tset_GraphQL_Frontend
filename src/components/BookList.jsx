@@ -1,24 +1,12 @@
-import './App.css'
-//import { gql, useQuery } from '@apollo/client';
-import BookList from './components/BookList';
+import React from 'react'
+import { useDataFetch } from "./DataFetchProvider";
+//import { useQuery } from '@apollo/client';
 
-/* const BOOKS = gql`
- query {
-  books {
-    id
-    title
-    author
-  }
-}
-`; 
-
-console.log(BOOKS) 
-*/
-
-/*
- function Books (){
-  const {loading, error, data} = useQuery(BOOKS) ;
-  console.log("All books: ", data);
+const BookList = () => {
+  //const {GET_BOOKS} = useDataFetch();
+  //const {loading, error, data} = useQuery(GET_BOOKS) ;
+  const {useGetBooks} =useDataFetch();
+  const {loading, error, data} = useGetBooks() ;
 
   return (
     <div className='tableContainer'>
@@ -50,24 +38,6 @@ console.log(BOOKS)
       )}
     </div>
   )
-
-}
- */
-function App() {
-
-  return (
-    <>
-
-      <div className='App'>
-        <h2>Test GraphQL: Book List</h2>
-        {/* <Books />  */}
-        <BookList/>
-
-      </div>
-
-     
-    </>
-  )
 }
 
-export default App
+export default BookList
