@@ -1,4 +1,5 @@
 import './App.css'
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 //import { gql, useQuery } from '@apollo/client';
 import BookList from './components/BookList';
 
@@ -57,15 +58,9 @@ function App() {
 
   return (
     <>
-
-      <div className='App'>
-        <h2>Test GraphQL: Book List</h2>
-        {/* <Books />  */}
-        <BookList/>
-
-      </div>
-
-     
+    <Routes>
+       <Route path= "/booklist" element ={ <BookList/>} />
+      </Routes>
     </>
   )
 }

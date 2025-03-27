@@ -13,9 +13,12 @@
     "@apollo/client": "^3.11.10",
     "@apollo/react-hooks": "^4.0.0",
     "apollo-boost": "^0.4.9",
+    "axios": "^1.8.3",
     "graphql": "^15.9.0",
+    "qrcode": "^1.5.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
