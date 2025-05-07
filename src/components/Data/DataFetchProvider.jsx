@@ -43,16 +43,33 @@ const GET_BOOKS = gql`
   }
 `;
 
+const GET_USERS = gql`
+  query Users {
+    users {
+      id
+      username
+      email
+      role
+      favorites {
+        id
+        title
+        author
+      }
+    }
+  }
+`;
+
 const DataFetchContext = createContext();
 
 export const useDataFetch = () => useContext(DataFetchContext);
 
 const DataFetchProvider = ({ children }) => {
   const useGetBooks = () => useQuery(GET_BOOKS);
+  const useGetUsers = () => useQuery(GET_USERS);
 
   return (
     <ApolloProvider client={client}>
-      <DataFetchContext.Provider value={{ useGetBooks }}>
+      <DataFetchContext.Provider value={{ useGetBooks, useGetUsers }}>
         {children}
       </DataFetchContext.Provider>
     </ApolloProvider>

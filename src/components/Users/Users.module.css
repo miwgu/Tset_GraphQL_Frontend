@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    /* justify-content: center;
+    align-items: center; */
+    height: 100vh;
+    margin: 0 0 1em;
+}
+
+.titleContent {
+    padding-top:5em;
+    padding-bottom:1em;
+    margin:0.5em auto;
+  }
+
+.content {
+    padding:1em;
+    margin:0.5em auto;
+  }

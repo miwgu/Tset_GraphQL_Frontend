@@ -97,12 +97,28 @@ const SideNav = () => {
                         <span className='uLine-text'>Login</span>
                     </Link>
                 </li>):
-                (<li className='nav-text'>
+                 (
+                <>
+                <li className='nav-text'>
+                    <Link to='/booklist' >
+                        <BiSolidPencil />
+                        <span className='uLine-text'>BookList</span>
+                    </Link>
+                </li>
+                <li className='nav-text'>
+                    <Link to='/userlist' >
+                        <BiSolidPencil />
+                        <span className='uLine-text'>UerList</span>
+                    </Link>
+                </li>
+                <li className='nav-text'>
                 <Link to='/' onClick={handleLogout}>
                     <IoMdLogOut />
                     <span className='uLine-text'>Logout</span>
                 </Link>
-                </li>)};
+                </li>
+                </>
+               )};
                 
                 
                {!isLoggedIn ? (
