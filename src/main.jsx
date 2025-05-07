@@ -2,7 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import DataFetchProvider from './components/DataFetchProvider.jsx'
+import  DataFetchProvider  from './components/Data/DataFetchProvider.jsx'
+import { LocalHostLoginProvider } from './components/Login/LocalHostLoginProvider.jsx'
+import { BrowserRouter } from 'react-router-dom'
 //import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
 
 /* const client = new ApolloClient({
@@ -12,8 +14,12 @@ import DataFetchProvider from './components/DataFetchProvider.jsx'
 }); */
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <DataFetchProvider>
-    <App />
-    </DataFetchProvider>
-  </StrictMode>,
+    <BrowserRouter>
+     <LocalHostLoginProvider>
+      <DataFetchProvider>
+       <App />
+      </DataFetchProvider>
+     </LocalHostLoginProvider>
+    </BrowserRouter>
+  </StrictMode>
 )

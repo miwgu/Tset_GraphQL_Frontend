@@ -1,5 +1,6 @@
 import React from 'react'
-import { useDataFetch } from "./DataFetchProvider";
+import './BookList.css';
+import { useDataFetch } from "../Data/DataFetchProvider";
 //import { useQuery } from '@apollo/client';
 
 const BookList = () => {
@@ -10,6 +11,9 @@ const BookList = () => {
 
   return (
     <div className='tableContainer'>
+       <h2>
+        GraphQL BookList
+      </h2>
       {loading&& <p>Loading...</p>}
       {error&& <p>Error: {error.message}</p>}
       {data && (
