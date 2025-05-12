@@ -37,7 +37,8 @@ export const login = async (config, email, password, token) => {
     const result = await response.json();
 
     if (result.errors) {
-        throw new Error(result.errors[0]?.message || 'Login failed');
+        console.error('GraphQL error:', result.errors[0]?.message);
+        throw new Error(result.errors[0]?.message || 'Login failed');    
     }
 
     const { token: authToken } = result.data.login;

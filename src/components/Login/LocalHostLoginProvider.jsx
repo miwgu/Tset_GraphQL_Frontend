@@ -33,12 +33,16 @@ export const LocalHostLoginProvider = ({ children }) => {
             const result = await authService.login(localConfig, email, password);
             console.log('Login Response:', result)
             setIsLoggedIn(result.isLoggedIn);
-            //sessionStorage.setItem('csrfToken', result.csrfToken);
             setError(null);// when user login suscess reset error
             navigate("/booklist")
         } catch (err) {
-            setError(err.message); //set error message
-            console.error('Error during login:', err.message);
+            if(err.message === "Failed to fetch"){
+                setError("Please check your network connection.");
+                console.error('Network error:', err.message);
+            }else{
+                setError(err.message||"An error occurred during login.");
+                console.error('Error during login:', err.message);
+            }
             setIsLoggedIn(false);
         } finally {
             setLoading(false);
