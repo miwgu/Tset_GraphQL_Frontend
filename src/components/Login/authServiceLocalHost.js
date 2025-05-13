@@ -37,8 +37,14 @@ export const login = async (config, email, password, token) => {
     const result = await response.json();
 
     if (result.errors) {
-        console.error('GraphQL error:', result.errors[0]?.message);
-        throw new Error(result.errors[0]?.message || 'Login failed');    
+        const firstError = result.errors[0];
+        console.error('GraphQL error:', firstError.message);  
+        
+        throw {
+            message: firstError.message,
+            code: firstError.extensions?.code || 'UNKNOWN_ERROR',
+            fullError: firstError
+        };
     }
 
     const { token: authToken } = result.data.login;

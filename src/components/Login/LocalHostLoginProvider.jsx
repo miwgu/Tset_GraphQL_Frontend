@@ -28,21 +28,24 @@ export const LocalHostLoginProvider = ({ children }) => {
         } */
 
         setLoading(true);
-        setError(null); //When user login error should be reset
+        setError(null); //When user login error should be reset        
         try {
             const result = await authService.login(localConfig, email, password);
-            console.log('Login Response:', result)
+            console.log('Login Response:', result);
             setIsLoggedIn(result.isLoggedIn);
-            setError(null);// when user login suscess reset error
-            navigate("/booklist")
+            setError(null); // when user login suscess reset error
+            navigate("/booklist");
         } catch (err) {
-            if(err.message === "Failed to fetch"){
+            console.error('Login catch error:', err);
+        
+            if (err.code === "UNAUTHENTICATED") {
+                setError("Login failed. Please try again."); // message for login failed
+            } else if (err.message === "Failed to fetch") {
                 setError("Please check your network connection.");
-                console.error('Network error:', err.message);
-            }else{
-                setError(err.message||"An error occurred during login.");
-                console.error('Error during login:', err.message);
+            } else {
+                setError(err.message || "An error occurred during login.");
             }
+        
             setIsLoggedIn(false);
         } finally {
             setLoading(false);
