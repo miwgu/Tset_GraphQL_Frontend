@@ -106,6 +106,12 @@ const SideNav = () => {
                     </Link>
                 </li>
                 <li className='nav-text'>
+                    <Link to='/addbook' >
+                        <BiSolidPencil />
+                        <span className='uLine-text'>Add a Book</span>
+                    </Link>
+                </li>
+                <li className='nav-text'>
                     <Link to='/userlist' >
                         <BiSolidPencil />
                         <span className='uLine-text'>UerList</span>

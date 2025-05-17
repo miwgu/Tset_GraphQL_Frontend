@@ -23,6 +23,7 @@ const BookList = () => {
               <th className='id_th'>Id</th>
               <th>Title</th>
               <th>Author</th>
+              <th>Image</th>
             </tr>
           </thead>
 
@@ -32,6 +33,7 @@ const BookList = () => {
                 <td className='id_td'>{book.id}</td>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
+                <img src={book.thumbnailUrl} width={50} />
               </tr>
 
             ))}
