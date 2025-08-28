@@ -95,7 +95,7 @@ const DataFetchContext = createContext();
 export const useDataFetch = () => useContext(DataFetchContext);
 
 const DataFetchProvider = ({ children }) => {
-  const useGetBooks = () => useQuery(GET_BOOKS);
+  const useGetBooks = () => useQuery(GET_BOOKS , { fetchPolicy: 'cache-first' });
   const useGetUsers = () => useQuery(GET_USERS);
   const useAddBook = () => useMutation(ADD_BOOK);
 
