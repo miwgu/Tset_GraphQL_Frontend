@@ -41,6 +41,7 @@ export const GET_BOOKS = gql`
       title
       author
       thumbnailUrl
+      sensitiveNotes
     }
   }
 `;

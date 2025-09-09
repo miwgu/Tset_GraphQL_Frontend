@@ -109,10 +109,7 @@ export const secureCall = async (config, url, options = {}) => {
 };
 
 export const logout = async (config) => {
-    
-        sessionStorage.removeItem('csrfToken');
-        localStorage.clear();
-
-    //return { isLoggedIn: false };
+  sessionStorage.removeItem("csrfToken");
+  localStorage.clear();
+  return { isLoggedIn: false };
 };
-

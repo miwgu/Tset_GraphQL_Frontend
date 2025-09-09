@@ -6,6 +6,8 @@ const LocalLoginContext = createContext();
 const localConfig = { apiUrl: "http://localhost:4000/graphql" };  // Configuration for local development
 
 export const LocalHostLoginProvider = ({ children }) => {
+    
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -52,10 +54,34 @@ export const LocalHostLoginProvider = ({ children }) => {
         }
     };
 
+
     const handleLogout = async() =>{
-        await authService.logout(localConfig);
-        setIsLoggedIn(false);
+
+     try{
+        await authService.logout(localConfig, children);
+        
+        // Reset Apollo cache
+        if (window.__APOLLO_CLIENT__) {
+        await window.__APOLLO_CLIENT__.clearStore();
     }
+        //Update state
+        setIsLoggedIn(false);
+        navigate("/login", {})
+    
+    } catch (err) {
+        console.error('Logout catch error:', err);
+            setError(
+             err.extemsions?.code === "UNAUTHENTICATED"
+               ? "You are already logged out."
+               :err.message || "An error occurred during logout."
+            );
+
+    } finally {
+        setIsLoggedIn(false);
+        // Redirect to login (replace history so back button won't return to protected page)
+        navigate("/login", { replace: true });
+    }
+    };
 
     const authService = {
         login,
